@@ -64,3 +64,92 @@ function findTwoNumbers(array, target) {
 }
 
 console.log(findTwoNumbers([2, 3, 9, 8, 11, 15], 26));
+// Task 5: Implement a simple JavaScript calculator. The calculator should take two numbers and an operator (+, -, *, /) as input and return the result of the operation.
+
+function calculator(first, method, second) {
+  switch (method) {
+    case "+":
+      return first + second;
+    case "-":
+      return first - second;
+    case "*":
+      return first * second;
+    case "/":
+      return first / second;
+    default:
+      return "Invalid operator";
+  }
+}
+
+console.log(calculator(10, "+", 5));
+console.log(calculator(10, "-", 5));
+console.log(calculator(10, "*", 5));
+console.log(calculator(10, "/", 5));
+
+// Task 6: Create a program that generates a random password of a specified length. The password should include a mix of uppercase letters, lowercase letters, numbers, and special characters.
+
+function createPassword(length) {
+  const passwordCharacter =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+  let password = "";
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * passwordCharacter.length);
+    password += passwordCharacter[randomIndex];
+  }
+  return password;
+}
+
+console.log(createPassword(12));
+
+// Task 7: Implement a function that converts a Roman numeral to an integer. The function should take a Roman numeral string (e.g., "IX" or "XXI") as input and return the corresponding integer value.
+
+function convertRomanToInt(roman) {
+  const relation = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+
+  let result = 0;
+  for (let i = 0; i < roman.length; i++) {
+    const current = relation[roman[i]];
+    const next = relation[roman[i + 1]];
+
+    if (next && current < next) {
+      result += next - current;
+      i++;
+    } else {
+      result += current;
+    }
+  }
+
+  return result;
+}
+
+console.log(convertRomanToInt("IX"));
+console.log(convertRomanToInt("III"));
+console.log(convertRomanToInt("XXI"));
+
+// Task 8: Implement a JavaScript function to find the second smallest element in an array of numbers. The function should return the second smallest number.
+
+function findSecondSmallest(array) {
+  let smallest = Infinity;
+  let secondSmallest = Infinity;
+
+  for (let num of array) {
+    if (num < smallest) {
+      secondSmallest = smallest;
+      smallest = num;
+    } else if (num < secondSmallest && num !== smallest) {
+      secondSmallest = num;
+    }
+  }
+
+  return secondSmallest;
+}
+
+console.log(findSecondSmallest([1, 4, 2, 7, 9, 5, 3, 6, 8]));
